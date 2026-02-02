@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@layer base {
+  :root {
+    --background: 20 15% 4%;
+    --foreground: 30 20% 95%;
+
+    --card: 20 12% 7%;
+    --card-foreground: 30 20% 95%;
+
+    --popover: 20 12% 7%;
+    --popover-foreground: 30 20% 95%;
+
+    --primary: 30 20% 95%;
+    --primary-foreground: 20 15% 4%;
+
+    --secondary: 20 12% 10%;
+    --secondary-foreground: 30 20% 95%;
+
+    --muted: 20 10% 12%;
+    --muted-foreground: 25 8% 55%;
+
+    --accent: 265 100% 75%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 20 10% 14%;
+    --input: 20 10% 14%;
+    --ring: 265 100% 75%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-hero: linear-gradient(180deg, hsl(20 15% 4%) 0%, hsl(20 12% 6%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(265 100% 75%) 0%, hsl(280 100% 70%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(265 100% 75% / 0.15) 0%, transparent 70%);
+    --gradient-card: linear-gradient(180deg, hsl(20 12% 8%) 0%, hsl(20 12% 6%) 100%);
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-medium: 0 8px 30px -8px hsl(0 0% 0% / 0.4);
+    --shadow-accent: 0 8px 24px -8px hsl(265 100% 75% / 0.4);
+    --shadow-glow: 0 0 60px hsl(265 100% 75% / 0.25);
+
+    --sidebar-background: 20 12% 6%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 265 100% 75%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 12% 10%;
+    --sidebar-accent-foreground: 30 20% 95%;
+    --sidebar-border: 20 10% 14%;
+    --sidebar-ring: 265 100% 75%;
+  }
+
+  .dark {
+    --background: 20 15% 4%;
+    --foreground: 30 20% 95%;
+
+    --card: 20 12% 7%;
+    --card-foreground: 30 20% 95%;
+
+    --popover: 20 12% 7%;
+    --popover-foreground: 30 20% 95%;
+
+    --primary: 30 20% 95%;
+    --primary-foreground: 20 15% 4%;
+
+    --secondary: 20 12% 10%;
+    --secondary-foreground: 30 20% 95%;
+
+    --muted: 20 10% 12%;
+    --muted-foreground: 25 8% 55%;
+
+    --accent: 265 100% 75%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 20 10% 14%;
+    --input: 20 10% 14%;
+    --ring: 265 100% 75%;
+
+    --sidebar-background: 20 12% 6%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 265 100% 75%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 12% 10%;
+    --sidebar-accent-foreground: 30 20% 95%;
+    --sidebar-border: 20 10% 14%;
+    --sidebar-ring: 265 100% 75%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .bg-hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .bg-accent-gradient {
+    background: var(--gradient-accent);
+  }
+
+  .bg-card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .bg-glow {
+    background: var(--gradient-glow);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-accent {
+    filter: drop-shadow(0 0 20px hsl(265 100% 75% / 0.4));
+  }
+
+  /* Button hover circles effect */
+  .btn-circles {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-circles::before,
+  .btn-circles::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: hsl(var(--accent-foreground) / 0.15);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+  }
+
+  .btn-circles::before {
+    top: -30%;
+    left: -10%;
+  }
+
+  .btn-circles::after {
+    bottom: -30%;
+    right: -10%;
+  }
+
+  .btn-circles:hover::before,
+  .btn-circles:hover::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .btn-circles:hover::before {
+    transition-delay: 0s;
+  }
+
+  .btn-circles:hover::after {
+    transition-delay: 0.1s;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 py-20 md:px-8 lg:px-16 lg:py-28;
+  }
+
+  .container-tight {
+    @apply max-w-5xl mx-auto;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Animated background orbs */
+  .orb {
+    @apply absolute rounded-full blur-3xl opacity-30;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    @apply w-[600px] h-[600px] bg-accent/20;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    @apply w-[400px] h-[400px] bg-accent/15;
+    animation-delay: -5s;
+  }
+
+  .orb-3 {
+    @apply w-[500px] h-[500px] bg-accent/10;
+    animation-delay: -10s;
+  }
+
+  /* Grid pattern */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(to right, hsl(20 10% 14% / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(20 10% 14% / 0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
